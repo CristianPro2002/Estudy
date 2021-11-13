@@ -1,0 +1,137 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.Labelsito {
+    width: 100%;
+	font-weight: 700;
+	padding: 10px;
+	cursor: pointer;
+	color: #fff;
+    
+}
+
+.inputsito {
+    width: 100%;
+	background: #cdcec0;
+    border: 3px solid rgb(255, 208, 1);
+	border-radius: 3px;
+	height: 45px;
+	padding: 0 40px 0 10px;
+	transition: .3s ease all;
+    box-sizing: border-box;
+    border: 0;
+    outline: none;
+    
+}
+
+.inputsito:hover {
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.4);
+}
+
+.Fondo {
+    position: absolute;
+	background-image: url("./imagenes/Fondo1.jpg");
+    background-attachment: fixed;
+	width:100%;
+    height:auto;
+	font-family: 'Roboto', sans-serif;
+}
+
+.hola {
+    background: rgb(244, 67, 54);
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+    box-sizing: border-box;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    
+}
+
+.holitis{
+    width: 100%;
+
+}
+
+.checkboxito{
+    width: 100%;
+	background: #c0c8ce;
+	border-radius: 3px;
+	height: 20px;
+	transition: .3s ease all;
+	
+    
+}
+.labels {
+    padding-left: 10px;
+	font-weight: 700;
+	cursor: pointer;
+	color: #fff;
+    width: 100%;
+}
+
+.Labelsit{
+    padding: 10px;
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items: center; 
+    box-sizing: border-box;
+
+}
+
+.alo{
+    width: 100%;
+}
+
+.holitiss {
+    display: flex;
+    justify-content: left;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+	cursor: pointer;
+	color: #fff;
+    width: 100%;
+}
+
+.checkboxitos {
+    padding-right: 6px;
+    
+}
+
+.checkboxitoss {
+
+    background: #c0c8ce;
+	border-radius: 3px;
+	transition: .3s ease all;
+    width: 20px;
+	height: 20px;
+
+}
+
+.Botonsito {
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    background: #17202A ;
+    color: white;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.4);
+    font-weight: bold;
+    border: 0;
+
+}
+
+.Botonsito:hover {
+   background: #1C2833 ; 
+}
+
+
+.contenedor {
+    padding: 20px;
+}
