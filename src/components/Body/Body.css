@@ -47,7 +47,7 @@
     box-sizing: border-box;
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.4);
     border-radius: 10px;
-    
+
 }
 
 .holitis{
@@ -114,14 +114,13 @@
 
 .Botonsito {
     width: 200px;
-    height: 40px;
+    height: 45px;
     border-radius: 5px;
     background: #17202A ;
     color: white;
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.4);
     font-weight: bold;
     border: 0;
-
 }
 
 .Botonsito:hover {
@@ -131,6 +130,7 @@
 
 .contenedor {
     padding: 20px;
+    
 }
 
 .seleccion {
@@ -145,6 +145,16 @@
     border: 0;
     outline: none;
     
+}
+
+.seleccion:hover {
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.4);
+}
+
+.contenedorB{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
