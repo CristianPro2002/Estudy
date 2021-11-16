@@ -1,47 +1,28 @@
 import React, {useState, useEffect}from 'react'
 import './Body.css'
-import db from '../firebase'
-import { getDatabase, ref, set } from "firebase/database";
+import {savePersonName, getPersons, deleteP} from "../aplicaciones/api";
+import Button from '@restart/ui/esm/Button';
 
 
 const Body = () => {
 
-    
-    
-function setdata() {
-  const db = getDatabase();
-  set(ref(db, nombre.value), {
-            nombre: nombre.value,
-            grupo: grupo.value,
-            CC: cc.value,
-            TI: ti.value,
-            CE: ce.value,
-            PP: pp.value,
-            documento: documento.value,
-            Fnacimiento: fnacimiento.value,
-            Fingreso: fingreso.value,
-            Fegreso: fegreso.value,
-            trimestre: trimestre.value,
-            terminos: terminos.value,
-  });
-}
 
 
+    
+    const [anombreCompleto, setAnombreCompleto] = useState(null)
+    const [aficha, setAficha] = useState(null)
+    const [atipoDocumento, setAtipoDocumento] = useState(null)
+    const [anodocumento, setAnodocumento] = useState(null)
+    const [afnacimiento, setAfnacimiento] = useState(null)
+    const [afingreso, setAfingreso] = useState(null)
+    const [afegreso, setAfegreso] = useState(null)
+    const [atrimestre, setAtrimestre] = useState(null)
+
+    const savePerson = () => {
+        savePersonName(anombreCompleto, aficha, atipoDocumento, anodocumento, afnacimiento, afingreso, afegreso, atrimestre);
+    }
    
-  
-    const nombre = document.getElementById('nombre')
-    const grupo = document.getElementById('grupo')
-    const cc = document.getElementById('cc')
-    const ti = document.getElementById('ti')
-    const ce = document.getElementById('ce')
-    const pp = document.getElementById('pp')
-    const documento = document.getElementById('documento')
-    const fnacimiento = document.getElementById('fnacimiento')
-    const fingreso = document.getElementById('fingreso')
-    const fegreso = document.getElementById('fegreso')
-    const trimestre = document.getElementById('trimestre')
-    const terminos = document.getElementById('terminos')
-    
+
     return (
         
                 <div className = "Fondo">
@@ -51,7 +32,7 @@ function setdata() {
                         <label className = "Labelsito">
                             Nombre Completo
                             <div className = "">
-                                <input type="text" name="nombre" className = "inputsito" id = "nombre" required/>
+                                <input type="text" name="nombre" className = "inputsito" id = "nombre" value = {anombreCompleto} onChange = { e => setAnombreCompleto(e.target.value)} required/>
                             </div>
                         </label>
                         </div>
@@ -60,7 +41,7 @@ function setdata() {
                         <label className = "Labelsito">
                             Grupo
                             <div className = "">
-                                <input type="text" name="grupo" className = "inputsito" id = "grupo" required/>
+                                <input type="text" name="grupo" className = "inputsito" id = "grupo" value = {aficha} onChange = { e => setAficha(e.target.value)} required/>
                             </div>
                         </label>
                         </div>
@@ -70,41 +51,15 @@ function setdata() {
                     <div className = "alo">
                         <label className = "labels">
           Tipo de documento:
-
-          <div className= "Labelsit">
-            CC
-          <input
-            name="cc"
-            type="checkbox"
-            className = "checkboxito"
-            id = "cc"
-            value="checkbox"
-            />
-            Ti
-            <input
-            name="ti"
-            type="checkbox"
-            className = "checkboxito"
-            id = "ti"
-            value="checkbox"
-            />
-            CE
-            <input
-            name="ce"
-            type="checkbox"
-            className = "checkboxito"
-            id = "ce"
-            value="checkbox"
-            />
-            PP
-            <input
-            name="pp"
-            type="checkbox"
-            className = "checkboxito"
-            id = "pp"
-            value="checkbox"
-            />
-            </div>
+        <div className = "">
+          <select value= {atipoDocumento} onChange = {e => setAtipoDocumento(e.target.value)} className = "seleccion" required>
+          <option >Selecciona</option>
+            <option >Cedula</option>
+            <option >Tarjeta Identidad</option>
+            <option >Cedula Extranjeria</option>
+            <option >Pasaporte</option>
+          </select>
+          </div>
         </label>
         </div>
 
@@ -112,7 +67,7 @@ function setdata() {
                         <label className = "Labelsito">
                             No documento
                             <div className = "">
-                                <input type="text" name="documento" className = "inputsito" id = "documento" required/>
+                                <input type="number" name="documento" className = "inputsito" id = "documento" value = {anodocumento} onChange = { e => setAnodocumento(e.target.value)} required/>
                             </div>
                         </label>
                         </div>
@@ -121,7 +76,7 @@ function setdata() {
                         <label className = "Labelsito">
                             Fecha nacimiento
                             <div className = "">
-                                <input type="date" name="fnacimiento" className = "inputsito" id = "fnacimiento" required/>
+                                <input type="date" name="fnacimiento" className = "inputsito" id = "fnacimiento" value = {afnacimiento} onChange = { e => setAfnacimiento(e.target.value)} required/>
                             </div>
                         </label>
                         </div>
@@ -130,7 +85,7 @@ function setdata() {
                         <label className = "Labelsito">
                             Fecha Ingreso
                             <div className = "">
-                                <input type="date" name="fingreso" className = "inputsito" id = "fingreso" required/>
+                                <input type="date" name="fingreso" className = "inputsito" id = "fingreso" value = {afingreso} onChange = { e => setAfingreso(e.target.value)} required/>
                             </div>
                         </label>
                         </div>
@@ -139,7 +94,7 @@ function setdata() {
                         <label className = "Labelsito">
                             Fecha Egreso
                             <div className = "">
-                                <input type="date" name="fegreso" className = "inputsito" id = "fegreso" required/>
+                                <input type="date" name="fegreso" className = "inputsito" id = "fegreso" value = {afegreso} onChange = { e => setAfegreso(e.target.value)} required/>
                             </div>
                         </label>
                         </div>
@@ -148,7 +103,7 @@ function setdata() {
                         <label className = "Labelsito">
                             No trimestre
                             <div className = "">
-                                <input type="text" name="trimestre" className = "inputsito" id = "trimestre" required />
+                                <input type="number" name="trimestre" className = "inputsito" id = "trimestre" value = {atrimestre} onChange = { e => setAtrimestre(e.target.value)} required />
                             </div>
                         </label>
                         </div>
@@ -160,17 +115,19 @@ function setdata() {
                         <input
                             name="terminos"
                             type="checkbox"
-                            value="checkbox"
                             className = "checkboxitoss"
                             id = "terminos"
+                            required
                         />
             </div>
             Acepto los terminos y condiciones
                 </label>
                 </div>
-                        <button type="submit" className = "Botonsito" id = "submit">Enviar</button> 
+                        
+                        <Button onClick = {savePerson} className = "Botonsito">Enviar</Button>
                     </form>
                     </div>
+
                 </div>
         
     )

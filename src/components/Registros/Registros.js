@@ -1,17 +1,40 @@
-import React from 'react'
+import React, {useEffect, useState}from 'react'
 import { useHistory } from 'react-router-dom'
 import Button from '@restart/ui/esm/Button'
 import Navb from '../Navbar/Navb'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './Registros.css'
+import Table from 'react-bootstrap/Table'
+import firebase, { db } from '../aplicaciones/firebase';
+import {collection, getDocs, getDoc, query, doc,  addDoc, deleteDoc, updateDoc} from "firebase/firestore";
+import {savePersonName, getPersons, deleteP} from "../aplicaciones/api";
 
 const Registros = () => {
     let History = useHistory();
+
+    const [estudiantes, setEstudiantes] = useState([]);
+    const usersCollectionRef = collection(db, 'estudiantes');
+
+  const deleteUser = async (id) => {
+    const userDoc = doc(db, 'estudiantes', id);
+    await deleteDoc(userDoc);
+  }
+
+  useEffect(() => {
+    const obtenerDatos = async () => {
+      const data = await getDocs(usersCollectionRef);
+      setEstudiantes(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+      
+    }
+     obtenerDatos();
+  }, []);
+
     return (
         <>
-        <Navb />
         <div className = "fondo">
+        <Navb />
+        <div className = "">
         <main className = "main-content">
             <div className = "crud-container">
                 <div className = "crud-header">
@@ -20,7 +43,10 @@ const Registros = () => {
                 <i class="bi bi-plus"></i>
                     <span>Nuevo Estudiante</span></button>
                 </div>
-                <table class="table">
+
+                <div> {estudiantes.map((user) => {return <div>
+
+                  <table class="table">
   <thead>
     <tr>
     <th scope="col">*</th>
@@ -37,28 +63,30 @@ const Registros = () => {
   </thead>
   <tbody>
     <tr>
-      <th scope="row">1</th>
-      <td>Cristian Andres Castaño Salas</td>
-      <td>ADSI 2231449</td>
-      <td>CC</td>
-      <td>1192719887</td>
-      <td>13/07/2002</td>
-      <td>11/11/2021</td>
-      <td>11/11/2021</td>
-      <td>IV</td>
+      <th scope="row">*</th>
+      <td>{user.Nombre}</td>
+      <td>{user.Grupo}</td>
+      <td>{user.TipoDocumento}</td>
+      <td>{user.Nodocumento}</td>
+      <td>{user.Fnacimiento}</td>
+      <td>{user.Fingreso}</td>
+      <td>{user.Fegreso}</td>
+      <td>{user.Trimestre}</td>
       <td>
-      <button type="button" class="btn btn-warning">
-      <i class="bi bi-pencil-fill"></i>
-      </button>
-      <button type="button" class="btn btn-danger">
+      
+      <button type="button" class="btn btn-danger" onClick ={()=>{deleteUser(user.id)}}>
       <i class="bi bi-trash-fill"></i>
       </button>
       </td>
     </tr>
   </tbody>
 </table>
+                </div>})}
+                
+</div>
             </div>
         </main>
+        </div>
         </div>
         </>
     )
